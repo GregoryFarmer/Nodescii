@@ -18,7 +18,7 @@ const configuration = {
     maxCpus: Math.min(os.cpus().length, 16), // How many workers should be spawned. Warning: A high number would cause performance issues.
     looped: false, // Whether playback should be looped.
     saveAscii: true, // Whether during playback frames should be saved to an /ascii folder in text files.
-    useCPU: true, // Whether it should use the CPU instead of the GPU.
+    useCPU: false, // Whether it should use the CPU instead of the GPU.
 }
 
 async function main() {
