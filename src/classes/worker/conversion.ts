@@ -191,12 +191,8 @@ export class asciiConverter {
                     continue;
                 }
 
-                const brightness =
-                    (r * 299 + g * 587 + b * 114) / 1000;
-
-                const charIndex = Math.floor(
-                    (brightness / 255) * (chars.length - 1)
-                );
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                const charIndex = Math.floor((brightness / 255) * (chars.length - 1));
 
                 ascii += chars[Math.min(charIndex, chars.length - 1)];
             }

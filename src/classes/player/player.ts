@@ -2,11 +2,16 @@ function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+import fs from 'node:fs';
+import path from 'node:path';
+
 export class framePlayer {
     private frames: Array<[number, string]>;
+    private saveAscii: boolean;
 
-    constructor(loadedFrames: Map<number, string>) {
+    constructor(loadedFrames: Map<number, string>, saveAscii : boolean) {
         this.frames = [...loadedFrames.entries()].sort((a, b) => a[0] - b[0]);
+        this.saveAscii = saveAscii;
     }
 
     async play(fps: number = 144): Promise<void> {
@@ -27,6 +32,14 @@ export class framePlayer {
             if (!frame) continue;
 
             const [, ascii] = frame;
+            
+            if (!fs.existsSync(path.join(process.cwd(), `ascii`))) {
+                fs.mkdirSync(path.join(process.cwd(), `ascii`))
+            }
+
+            if(this.saveAscii) {
+                fs.writeFileSync(path.join(process.cwd(), `ascii`, `${i}.txt`), ascii)
+            }
 
             console.clear();
             process.stdout.write(ascii);

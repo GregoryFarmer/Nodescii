@@ -118,12 +118,7 @@ export class imageDecoder {
                         const pa = Math.abs(p - left);
                         const pb = Math.abs(p - above);
                         const pc = Math.abs(p - upperLeft);
-                        const predictor =
-                            pa <= pb && pa <= pc
-                                ? left
-                                : pb <= pc
-                                ? above
-                                : upperLeft;
+                        const predictor = pa <= pb && pa <= pc ? left : pb <= pc ? above : upperLeft;
                         reconstructed = (rawByte + predictor) & 0xff;
                         break;
                     }
