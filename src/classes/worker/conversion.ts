@@ -14,16 +14,16 @@ export interface convertOptions {
 }
 
 const GPUBufferUsage = {
-    MAP_READ: 1,
-    MAP_WRITE: 2,
-    COPY_SRC: 4,
-    COPY_DST: 8,
-    INDEX: 16,
-    VERTEX: 32,
-    UNIFORM: 64,
-    STORAGE: 128,
-    INDIRECT: 256,
-    QUERY_RESOLVE: 512
+    MAP_READ: 1 << 0,
+    MAP_WRITE: 1 << 1,
+    COPY_SRC: 1 << 2,
+    COPY_DST: 1 << 3,
+    INDEX: 1 << 4,
+    VERTEX: 1 << 5,
+    UNIFORM: 1 << 6,
+    STORAGE: 1 << 7,
+    INDIRECT: 1 << 8,
+    QUERY_RESOLVE: 1 << 9,
 } as const;
 
 const GPUMapMode = {
