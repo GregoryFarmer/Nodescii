@@ -46,3 +46,6 @@ In development, the following tools were used:
 Node v20.18.0
 npm 10.8.2
 ```
+
+# License
+This repository is under the [GNU General Public License](https://github.com/GregoryFarmer/Nodescii?tab=GPL-3.0-1-ov-file).
