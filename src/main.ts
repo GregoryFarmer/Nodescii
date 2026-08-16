@@ -18,6 +18,7 @@ const configuration = {
     maxCpus: Math.min(os.cpus().length, 16), // How many workers should be spawned. Warning: A high number would cause performance issues.
     looped: false, // Whether playback should be looped.
     saveAscii: true, // Whether during playback frames should be saved to an /ascii folder in text files.
+    useCPU: true, // Whether it should use the CPU instead of the GPU.
 }
 
 async function main() {
@@ -27,7 +28,7 @@ async function main() {
     const compiler = new frameCompiler(framesDir, workerPath, configuration.maxCpus);
 
     const start = performance.now();
-    const loaded = await compiler.compile();
+    const loaded = await compiler.compile(configuration.useCPU);
     const compileTime = (performance.now() - start) / 1000;
 
     const player = new framePlayer(loaded, configuration.saveAscii);

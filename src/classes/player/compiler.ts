@@ -31,7 +31,7 @@ export class frameCompiler {
             );
     }
 
-    async compile(): Promise<Map<number, string>> {
+    async compile(useCPU : boolean): Promise<Map<number, string>> {
         const frames = this.getFrames();
 
         if (frames.length === 0) {
@@ -58,7 +58,7 @@ export class frameCompiler {
                 activeWorkers++;
 
                 const worker = new Worker(this.workerPath, {
-                    workerData: { frame, id }
+                    workerData: { frame, id, useCPU }
                 });
 
                 let workerFinished = false;

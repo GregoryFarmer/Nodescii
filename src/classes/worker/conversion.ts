@@ -33,9 +33,11 @@ const GPUMapMode = {
 
 export class asciiConverter {
     private shaderDir: string;
+    private useCPU: boolean;
 
-    constructor(shaderDir: string) {
+    constructor(shaderDir: string, useCPU: boolean) {
         this.shaderDir = shaderDir;
+        this.useCPU = useCPU;
     }
 
     async convert(
@@ -45,10 +47,14 @@ export class asciiConverter {
         targetWidth: number,
         chars: string[]
     ): Promise<string> {
-        try {
-            return await this.gpuConvert(raw, width, height, targetWidth, chars);
-        } catch {
+        if (this.useCPU) {
             return this.cpuConvert(raw, width, height, targetWidth, chars);
+        }else{
+            try {
+                return await this.gpuConvert(raw, width, height, targetWidth, chars);
+            } catch {
+                return this.cpuConvert(raw, width, height, targetWidth, chars);
+            }
         }
     }
 

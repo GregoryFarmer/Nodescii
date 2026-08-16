@@ -41,7 +41,8 @@ export class frameWorker {
 
         this.decoder = new imageDecoder();
         this.converter = new asciiConverter(
-            path.join(path.dirname(new URL(import.meta.url).pathname), 'shaders')
+            path.join(path.dirname(new URL(import.meta.url).pathname), 'shaders'),
+            workerData.useCPU,
         );
     }
 
